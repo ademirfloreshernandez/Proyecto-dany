@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ColaMantenimiento } from '../clases/ColaMantenimiento';
-
+import logo from '../assets/FixturnLOGO.png';
 const miCola = new ColaMantenimiento();
 
 export function PageFixTurn() {
@@ -29,18 +29,19 @@ export function PageFixTurn() {
 
   if (sesion === false) {
     return (
-      <div>
-        <h2>FixTurn</h2>
+      <div className="font-[Poppins] text-center">
+        <img className="size-20 block mx-auto" src={logo} alt="Logo FixTurn" />
+        <h2 className="font-bold">FixTurn</h2>
         <p>Login de Jefe</p>
-        <button onClick={() => setSesion(true)}>Entrar</button>
+        <button className="rounded-3xl bg-blue-700 py-1 px-4 text-white hover:bg-blue-800 hover:scale-105 transition-transform duration-150 ease-in-out" onClick={() => setSesion(true)}>Entrar</button>
       </div>
     );
   }
 
   return (
-    <div>
+    <div className="font-[Poppins]">
       <h2>FixTurn - Panel del Jefe</h2>
-      <button onClick={() => setSesion(false)}>Cerrar sesión</button>
+      <button className="rounded-3xl bg-red-500 py-1 px-4 text-white hover:bg-red-600 hover:scale-105 transition-transform duration-150 ease-in-out" onClick={() => setSesion(false)}>Cerrar sesión</button>
 
       <hr />
 
