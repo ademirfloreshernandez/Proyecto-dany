@@ -1,3 +1,4 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 import { useState } from 'react';
 import { ColaMantenimiento } from '../clases/ColaMantenimiento';
 import logo from '../assets/FixturnLOGO.png';
@@ -29,19 +30,25 @@ export function PageFixTurn() {
 
   if (sesion === false) {
     return (
-      <div className="font-[Poppins] text-center">
+      <div className="mt-55 font-[Poppins] text-center">
         <img className="size-20 block mx-auto" src={logo} alt="Logo FixTurn" />
         <h2 className="font-bold">FixTurn</h2>
         <p>Login de Jefe</p>
-        <button className="rounded-3xl bg-blue-700 py-1 px-4 text-white hover:bg-blue-800 hover:scale-105 transition-transform duration-150 ease-in-out" onClick={() => setSesion(true)}>Entrar</button>
+        <button className="mt-2 rounded-3xl bg-blue-700 py-1 px-4 text-white hover:bg-blue-800 hover:scale-105 transition-transform duration-150 ease-in-out" onClick={() => setSesion(true)}>Entrar</button>
       </div>
     );
   }
 
+
+  {/* Panel de control del jefe - - - - -- - - - - - - - - - -- - -- - - - - -- - - - - --  -- */}
   return (
     <div className="font-[Poppins]">
-      <h2>FixTurn - Panel del Jefe</h2>
-      <button className="rounded-3xl bg-red-500 py-1 px-4 text-white hover:bg-red-600 hover:scale-105 transition-transform duration-150 ease-in-out" onClick={() => setSesion(false)}>Cerrar sesión</button>
+      <div className="items-center bg-[#004aad] flex">
+        <div><img className="ml-4 mt-2 mb-2 bg-white size-10 block mx-auto rounded-full" src={logo} alt="Logo FixTurn" /></div> {/* Logo */}
+        <div><h2 className="font-bold text-white p-2 flex-none">FixTurn - Panel del Jefe</h2></div> 
+        <div><button className="ml-3 items-right border border-white rounded-3xl bg-none py-1 px-2 text-white hover:bg-white hover:text-[#004aad] hover:scale-105 transition-transform duration-150 ease-in-out" onClick={() => setSesion(false)}>Cerrar sesión</button></div>
+      </div>
+      
 
       <hr />
 
