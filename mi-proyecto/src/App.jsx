@@ -1,4 +1,4 @@
-import { PageFixTurn } from './componentes/PageFixTurn';
+import { PageFixTurn } from './componentes/Login';
 
 function App() {
   return (
