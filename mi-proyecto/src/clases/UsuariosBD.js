@@ -3,5 +3,8 @@ export default class UsuariosBD {
         this.UsuariosBD = [];
     }
 
+    agregarUsuario(usuario) {
+        this.UsuariosBD.push(usuario);
+    }
 }
 

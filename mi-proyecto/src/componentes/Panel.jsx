@@ -41,16 +41,20 @@ export default function Panel({ setSesion }) {
 
             <hr />
             <div className="ml-4 mt-2.5">
+                <div className="font-[Poppins] text-[50px] font-light text-[#004aad]">BIENVENIDO</div>
                 <div> 
                     <h3 className="font-bold">Servicios de mantenimiento a realizar</h3>
                     <form onSubmit={guardar}>
                         <input 
+                        className="border border-gray-400 px-2 py-1 rounded-md mb-2 hover:bg-gray-100 mr-3"
                         type="text" 
                         value={texto} 
                         onChange={(e) => setTexto(e.target.value)} 
                         placeholder="Escribe el reporte"
                         />
-                        <button type="submit">Agregar</button>
+                        <button type="submit" className="bg-blue-700 text-white py-1 px-4 rounded-md hover:bg-blue-800 hover:scale-105 transition-transform duration-150 ease-in-out">
+                            +
+                        </button>
                     </form>
                 </div>
 
