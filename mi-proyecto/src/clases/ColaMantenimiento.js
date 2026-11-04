@@ -6,6 +6,7 @@ export class ColaMantenimiento {
 
   agregar(elemento) {
     this.elementos.push(elemento);
+    localStorage.setItem('cola', JSON.stringify(this.elementos)); // Guardar la cola en localStorage
   }
 
   atender() {

@@ -59,19 +59,19 @@ export default function Panel({ setSesion }) {
                         <div>
                             <h3 className="font-bold">Cola de Espera</h3>
                             <p>Pendientes: {miCola.elementos.length}</p>
-                        
+                            <strong>Atender ahora:</strong>
                             {miCola.elementos.length > 0 && (
-                                <div className="border border-gray-300 px-2 py-2 rounded-md mb-2 hover:bg-gray-100">
-                                    <p><strong>Atender ahora:</strong> {miCola.elementos[0]}</p>
+                                <ul className="flex-col border border-gray-300 px-2 py-2 rounded-md mb-2 hover:bg-gray-100 mr-200 font-bold">
+                                    <p> {miCola.elementos[0]}</p>
                                     <button className="bg-blue-700 text-white py-1 px-4 rounded-md hover:bg-blue-800 hover:scale-105 transition-transform duration-150 ease-in-out"onClick={siguiente}>Realizado</button>
-                                </div>
+                                </ul>
                             )}
                         </div>
 
                         <div>
-                            <ul>
+                            <ul >
                                 {miCola.elementos.slice(1).map((item, i) => (
-                                <li key={i}>{item}</li>
+                                <li className="border border-gray-300 px-2 py-2 rounded-md mb-2 hover:bg-gray-100 mr-200" key={i}>{item}</li>
                                 ))}
                             </ul>
                         </div>

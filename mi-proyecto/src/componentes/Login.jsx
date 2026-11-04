@@ -12,6 +12,9 @@ export function Logeo() {
   const[NoUsuario, setNoUsuario] = useState('');
   const[Contraseña, setContraseña] = useState('');
   const[Error, setError] = useState(false);
+
+  const[registro, setRegistro] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (NoUsuario === '' && Contraseña === '') {
@@ -25,7 +28,7 @@ export function Logeo() {
     }
   }
 
-  if (sesion === false) {
+  if (sesion === false && registro === false) {
     return (
       <>
       <div className="mt-55 font-[Poppins] text-center mx-auto my-auto">
@@ -53,6 +56,12 @@ export function Logeo() {
               <button onClick={handleSubmit} className="mt-2 rounded-3xl bg-blue-700 py-1 px-4 text-white hover:bg-blue-800 hover:scale-105 transition-transform duration-150 ease-in-out">Entrar</button>
         </form>
         {Error && <p className="text-red-500 mt-2">Por favor, ingresa un nombre de usuario y una contraseña.</p>}
+
+            {/* Texto inferior de registro */}
+          <div className="mt-6 text-center text-sm">
+            <p className="text-gray-800 font-medium">¿Nuevo por aquí?</p>
+            <span className="text-[#0052B4] font-bold cursor-pointer hover:underline hover:scale-105 transition-transform duration-100 ease-in-out mt-1 block" onClick={() => setRegistro(true)}>Registro</span>
+          </div>
       </div>
       </>
     );
