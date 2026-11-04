@@ -1,9 +1,9 @@
-import { PageFixTurn } from './componentes/Login';
+import { Logeo } from './componentes/Login';
 
 function App() {
   return (
     <div>
-      <PageFixTurn />
+      <Logeo />
     </div>
   );
 }
