@@ -56,25 +56,7 @@ export default function Panel({ setSesion }) {
             <div>
                 <div className="flex-col space-y-4 ml-4 mt-2.5">
                     <div className="text-[50px] font-bold text-[#000000] flex space-x-3"><p>Bienvenido de nuevo</p> <p className="uppercase font-thin text-[#004aad]">{localStorage.getItem('NoUsuario')}</p></div>
-                        <div>
-                            <h3 className="font-bold">Cola de Espera</h3>
-                            <p>Pendientes: {miCola.elementos.length}</p>
-                            <strong>Atender ahora:</strong>
-                            {miCola.elementos.length > 0 && (
-                                <ul className="flex-col border border-gray-300 px-2 py-2 rounded-md mb-2 hover:bg-gray-100 mr-200 font-bold">
-                                    <p> {miCola.elementos[0]}</p>
-                                    <button className="bg-blue-700 text-white py-1 px-4 rounded-md hover:bg-blue-800 hover:scale-105 transition-transform duration-150 ease-in-out"onClick={siguiente}>Realizado</button>
-                                </ul>
-                            )}
-                        </div>
-
-                        <div>
-                            <ul >
-                                {miCola.elementos.slice(1).map((item, i) => (
-                                <li className="border border-gray-300 px-2 py-2 rounded-md mb-2 hover:bg-gray-100 mr-200" key={i}>{item}</li>
-                                ))}
-                            </ul>
-                        </div>
+                        
                         <div> 
                             <h3 className="font-bold">Servicios de mantenimiento a realizar</h3>
 
@@ -90,6 +72,25 @@ export default function Panel({ setSesion }) {
                                     +
                                 </button>
                             </form>
+                        </div>
+                        <div>
+                            <h3 className="font-bold">Cola de Espera</h3>
+                            <p>Pendientes: {miCola.elementos.length}</p>
+                            <strong>Atender ahora:</strong>
+                            {miCola.elementos.length > 0 && (
+                                <ul className="flex-col border border-gray-300 px-2 py-2 rounded-md mb-2 hover:bg-gray-100 mr-200 font-bold">
+                                    <p> {miCola.elementos[0]}</p>
+                                    <button className="bg-blue-700 text-white py-1 px-4 rounded-md hover:bg-blue-800 hover:scale-105 transition-transform duration-150 ease-in-out"onClick={siguiente}>Realizado</button>
+                                </ul>
+                            )}
+                        </div>
+
+                        <div> <p className="font-bold">Siguientes en la cola:</p>
+                            <ul >
+                                {miCola.elementos.slice(1).map((item, i) => (
+                                <li className="border border-gray-300 px-2 py-2 rounded-md mb-2 hover:bg-gray-100 mr-200" key={i}>{item}</li>
+                                ))}
+                            </ul>
                         </div>
 
                     
