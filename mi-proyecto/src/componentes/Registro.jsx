@@ -3,7 +3,7 @@ import { useState } from 'react';
 import logo from '../assets/FixturnLOGO.png';
 import Panel from './Panel';
 
-export function Logeo({setRegistro}) {
+export default function Logeo({setRegistro}) {
   const [sesion, setSesion] = useState(() => {
     return localStorage.getItem('sesion') === 'true'; // Función hecha con apoyo de IA, mantiene la sesión aunque se cierre o recargue la página.
   });
@@ -20,13 +20,12 @@ export function Logeo({setRegistro}) {
       return;
     } else {
       setError(false);
-      setSesion(true);
+      setRegistro(false);
       localStorage.setItem('sesion', 'true'); // Guardar el estado de la sesión en localStorage
       localStorage.setItem('NoUsuario', NoUsuario); // Guardar el nombre de usuario en localStorage
     }
   }
 
-  if (sesion === false && registro === false) {
     return (
       <>
       <div className="mt-55 font-[Poppins] text-center mx-auto my-auto">
@@ -69,11 +68,7 @@ export function Logeo({setRegistro}) {
             <span className="text-[#0052B4] font-bold cursor-pointer hover:underline hover:scale-105 transition-transform duration-100 ease-in-out mt-1 block" onClick={() => setRegistro(false) && setSesion(false)}>Iniciar sesión</span>
           </div>
       </div>
+      <div><button className="ml-3 items-right border border-white rounded-3xl bg-none py-0.5 px-2 text-white hover:bg-white hover:text-[#004aad] hover:scale-105 transition-transform duration-150 ease-in-out" onClick={() => localStorage.setItem('registro', false) || setRegistro(false)}>Cerrar sesión</button></div>
       </>
     );
-  } else if (sesion === true) {
-    return (
-    <Panel setSesion={setSesion} />
-    )
-  }
 }

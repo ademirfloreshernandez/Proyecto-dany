@@ -17,12 +17,13 @@ export function Logeo() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (NoUsuario === '' && Contraseña === '') {
+    if (NoUsuario === '' || Contraseña === '') {
       setError(true);
       return;
     } else {
       setError(false);
       setSesion(true);
+      setRegistro(false);
       localStorage.setItem('sesion', 'true'); // Guardar el estado de la sesión en localStorage
       localStorage.setItem('NoUsuario', NoUsuario); // Guardar el nombre de usuario en localStorage
     }
