@@ -4,19 +4,6 @@ import logo from '../assets/FixturnLOGO.png'; //logo
 
 const miCola = new ColaMantenimiento();
 
-function Saludo() {
-  // Se calcula la hora justo al cargar el componente
-  const [saludo] = useState(() => {
-    const hora = new Date().getHours();
-    if (hora >= 6 && hora < 12) {
-      return 'Buenos días';
-    } else if (hora >= 12 && hora < 20) {
-      return 'Buenas tardes';
-    } else {
-      return 'Buenas noches';
-    }
-  })};
-
 export default function Panel({ setSesion }) {
     
     const [actualizar, setActualizar] = useState(0);

@@ -15,8 +15,16 @@ export default function Logeo({setRegistro}) {
   const[Error, setError] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (Contraseña === '' && contraseña1 === '') {
-      setError(true);
+    
+    if (NoUsuario.length < 3) {
+      setError("Min3Car");
+      return;
+    }
+    else if (contraseña1 !== Contraseña) {
+      setError("NoCoinciden");
+      return;
+    } else if (Contraseña.length < 4 ){
+      setError("Min4Car");
       return;
     } else {
       setError(false);
@@ -60,7 +68,9 @@ export default function Logeo({setRegistro}) {
 
             <button onClick={handleSubmit} className="mt-2 rounded-3xl bg-blue-700 py-1 px-4 text-white hover:bg-blue-800 hover:scale-105 transition-transform duration-150 ease-in-out">Entrar</button>
         </form>
-        {Error && <p className="text-red-500 mt-2">las contraseñas no coinciden</p>}
+        {Error === "NoCoinciden" && <p className="text-red-500 mt-2">las contraseñas no coinciden</p>}
+        {Error === "Min4Car" && <p className="text-red-500 mt-2">la contraseña debe tener al menos 4 caracteres</p>}
+        {Error === "Min3Car" && <p className="text-red-500 mt-2">el nombre de usuario debe tener al menos 3 caracteres</p>}
 
             {/* Texto inferior de login */}
           <div className="mt-6 text-center text-sm">

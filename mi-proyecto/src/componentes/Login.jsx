@@ -21,7 +21,13 @@ export function Logeo() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (NoUsuario === '' || Contraseña === '') {
-      setError(true);
+      setError("CamposVacios");
+      return;
+    } else if (Contraseña.length < 4) {
+      setError("Min4Car");
+      return;
+    } else if (NoUsuario.length < 3) {
+      setError("Min3Car");
       return;
     } else {
       setError(false);
@@ -59,8 +65,10 @@ export function Logeo() {
             />
               <button onClick={handleSubmit} className="mt-2 rounded-3xl bg-blue-700 py-1 px-4 text-white hover:bg-blue-800 hover:scale-105 transition-transform duration-150 ease-in-out">Entrar</button>
         </form>
-        {Error && <p className="text-red-500 mt-2">Por favor, ingresa un nombre de usuario y una contraseña.</p>}
-
+        {Error === "CamposVacios" && <p className="text-red-500 mt-2">No pueden haber campos vacíos</p>}
+        {Error === "Min4Car" && <p className="text-red-500 mt-2">la contraseña debe tener al menos 4 caracteres</p>}
+        {Error === "Min3Car" && <p className="text-red-500 mt-2">el nombre de usuario debe tener al menos 3 caracteres</p>}
+        
             {/* Texto inferior de registro */}
           <div className="mt-6 text-center text-sm">
             <p className="text-gray-800 font-medium">¿Nuevo por aquí?</p>
