@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import logo from '../assets/FixturnLOGO.png';
 import Panel from './Panel';
+//no destruir si no registro explota
 import Registro from './Registro';
 
 export function Logeo() {
@@ -73,7 +74,7 @@ export function Logeo() {
     <Panel setSesion={setSesion} />
     )
   }
-
+//no destruir si no registro explota
    if (registro === true) {
   return <Registro setRegistro={setRegistro} />;
 }
