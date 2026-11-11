@@ -2,12 +2,14 @@
 import { useState } from 'react';
 import logo from '../assets/FixturnLOGO.png';
 import Panel from './Panel';
+import Registro from './Registro';
 
 export function Logeo() {
   const [sesion, setSesion] = useState(() => {
     return localStorage.getItem('sesion') === 'true'; // Función hecha con apoyo de IA, mantiene la sesión aunque se cierre o recargue la página.
   });
 
+ 
   //intentando hacer sistema de login - md85wzta con tutorial de yt
   const[NoUsuario, setNoUsuario] = useState('');
   const[Contraseña, setContraseña] = useState('');
@@ -71,4 +73,8 @@ export function Logeo() {
     <Panel setSesion={setSesion} />
     )
   }
+
+   if (registro === true) {
+  return <Registro setRegistro={setRegistro} />;
+}
 }
