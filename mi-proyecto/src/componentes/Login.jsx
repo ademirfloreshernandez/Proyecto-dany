@@ -5,6 +5,8 @@ import Panel from './Panel';
 //no destruir si no registro explota
 import Registro from './Registro';
 
+
+
 export function Logeo() {
   const [sesion, setSesion] = useState(() => {
     return localStorage.getItem('sesion') === 'true'; // Función hecha con apoyo de IA, mantiene la sesión aunque se cierre o recargue la página.
