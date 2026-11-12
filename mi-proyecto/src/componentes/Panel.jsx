@@ -30,22 +30,48 @@ export default function Panel({ setSesion }) {
 
     return (
         <>
-        <div> {/*solo para que todo el archivo tenga la fuente Poppins*/}
-            <div> 
-                <div className="items-center py-2 bg-[#004aad] flex"> {/*el "nav bar" segun*/}
-                    <div><img className="ml-4 mt-2mb-2 bg-white size-10 block mx-auto rounded-full" src={logo} alt="Logo FixTurn" /></div> {/* Logo */}
-                    <div><h2 className="font-bold uppercase text-white p-2 flex-none">FixTurn - Panel Principal</h2></div> 
-                    <div><button className="ml-3 items-right border border-white rounded-3xl bg-none py-0.5 px-2 text-white hover:bg-white hover:text-[#004aad] hover:scale-105 transition-transform duration-150 ease-in-out" onClick={() => localStorage.setItem('sesion', false) || setSesion(false)}>Cerrar sesión</button></div>
+            <div className="py-2 bg-[#004aad] flex"> {/*el "nav bar" segun*/}
+                <div className="flex items-center mr-20">
+                    <img className="ml-4 mt-2mb-2 bg-white size-10 block rounded-full" src={logo} alt="Logo FixTurn" /> {/* Logo */}
+                    <h2 className="font-bold uppercase text-white p-2">FixTurn - Panel Principal</h2>   
+                </div>    
+                    
+                <div className="flex items-center mx-auto">
+                    <button className="ml-3 border border-white rounded-3xl bg-none py-0.5 px-2 text-white hover:bg-white hover:text-[#004aad] hover:scale-105 transition-transform duration-150 ease-in-out" onClick={borrarHistorial}>Inicio</button>
+                    <button className="ml-3 border border-white rounded-3xl bg-none py-0.5 px-2 text-white hover:bg-white hover:text-[#004aad] hover:scale-105 transition-transform duration-150 ease-in-out" onClick={borrarHistorial}>Agregar</button>
                 </div>
+                <button className="ml-auto items-center border border-white rounded-3xl bg-none py-0.2 px-2 text-white hover:bg-white hover:text-[#004aad] hover:scale-105 transition-transform duration-150 ease-in-out" onClick={() => localStorage.setItem('sesion', false) || setSesion(false)}>Cerrar sesión </button>
             </div>
 
             {/*layout de la página*/}
             <div>
                 <div className="flex-col space-y-4 ml-4 mt-2.5">
-                    <div className="text-[50px] font-bold text-[#000000] flex space-x-3"><p>Bienvenido de nuevo</p> <p className="uppercase font-thin text-[#004aad]">{localStorage.getItem('NoUsuario')}</p></div>
+                    <div>
+                        <span className="text-[50px] font-bold text-[#000000] flex space-x-3">
+                            <p>Bienvenido de nuevo</p> <p className="uppercase font-thin text-[#004aad]">{localStorage.getItem('NoUsuario')}</p>
+                        </span>
+              
+                        <span className="flex items-center mt-1 mb-2 space-x-2">
+                            {miCola.elementos.length === 0 ? (
+                                <p className="text-[#000000] font-light">No hay mantenimientos pendientes</p>
+                            ) : (
+                                <>
+                                    <p className="font-light">Mantenimientos pendientes ahora mismo: </p>
+                                    <p className="text-[#004aad]">{miCola.elementos.length}</p>
+                                </>
+                            )}
+                        </span>
+                    
+                    </div>
+                        
                         
                         <div> 
-                            <h3 className="font-bold">Servicios de mantenimiento a realizar</h3>
+                            
+                            <span className="flex items-center mt-1 mb-2 space-x-2">
+                                <button className="border border-[#004aad] rounded-3xl bg-none py-0.5 px-2 text-[#004aad] hover:bg-[#004aad] hover:text-[white] hover:scale-105 transition-transform duration-150 ease-in-out" onClick={borrarHistorial}>Atender</button>
+                                <button className="border border-[#004aad] rounded-3xl bg-none py-0.5 px-2 text-[#004aad] hover:bg-[#004aad] hover:text-[white] hover:scale-105 transition-transform duration-150 ease-in-out" onClick={borrarHistorial}>Historial</button>
+                            </span>
+                            
 
                             <form onSubmit={guardar}>
                                 <input 
@@ -61,8 +87,6 @@ export default function Panel({ setSesion }) {
                             </form>
                         </div>
                         <div>
-                            <h3 className="font-bold">Cola de Espera</h3>
-                            <p>Pendientes: {miCola.elementos.length}</p>
                             <strong>Atender ahora:</strong>
                             {miCola.elementos.length > 0 && (
                                 <ul className="flex-col border border-gray-300 px-2 py-2 rounded-md mb-2 hover:bg-gray-100 mr-200 font-bold">
@@ -101,7 +125,6 @@ export default function Panel({ setSesion }) {
         
                 </div>
             </div>
-        </div>
         </>
         
     )

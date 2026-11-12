@@ -23,11 +23,11 @@ export function Logeo() {
     if (NoUsuario === '' || Contraseña === '') {
       setError("CamposVacios");
       return;
-    } else if (Contraseña.length < 4) {
-      setError("Min4Car");
-      return;
     } else if (NoUsuario.length < 3) {
       setError("Min3Car");
+      return;
+    } else if (Contraseña.length < 4) {
+      setError("Min4Car");
       return;
     } else {
       setError(false);
