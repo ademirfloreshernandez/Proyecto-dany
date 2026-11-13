@@ -32,15 +32,15 @@ export default function Panel({ setSesion }) {
 
     return (
         <>
-        <div> 
+        <table className="w-full h-screen bg-[#ffffff] static top-0"> 
             {/* 1. La barra de navegación superior que se queda fija */}
-            <div> 
-                <div className="items-center py-2 bg-[#004aad] flex">
-                    <div><img className="ml-4 mt-2 mb-2 bg-white size-10 block mx-auto rounded-full" src={logo} alt="Logo FixTurn" /></div>
-                    <div><h2 className="font-bold uppercase text-white p-2 flex-none">FixTurn - Panel Principal</h2></div> 
-                    <div><button className="ml-3 items-right border border-white rounded-3xl bg-none py-0.5 px-2 text-white hover:bg-white hover:text-[#004aad] hover:scale-105 transition-transform duration-150 ease-in-out" onClick={() => localStorage.setItem('sesion', false) || setSesion(false)}>Cerrar sesión</button></div>
-                </div>
-            </div>
+            <tr className="bg-[#004aad] text-white h-16"> 
+                <th className="flex">
+                    <div><img className="ml-4 mt-2 mb-2 bg-white size-10 rounded-full" src={logo} alt="Logo FixTurn" /></div>
+                    <div><h2 className="font-bold uppercase text-white m-4">FixTurn - Panel Principal</h2></div>
+                    <div><button className="m-4 border border-white rounded-3xl bg-none py-0.5 px-2 text-white hover:bg-white hover:text-[#004aad] hover:scale-105 transition-transform duration-150 ease-in-out" onClick={() => localStorage.setItem('sesion', false) || setSesion(false)}>Cerrar sesión</button></div>
+                </th>
+            </tr>
 
             {/* 2. EL INTERRUPTOR DE VISTAS */}
             {vistaHistorial ? (
@@ -94,7 +94,7 @@ export default function Panel({ setSesion }) {
                             <strong>Atender ahora:</strong>
                             
                             {miCola.elementos.length > 0 && (
-                                <ul className="border border-gray-300 px-2 py-2 rounded-md mb-2 hover:bg-gray-100 font-bold">
+                                <ul className="border border-gray-300 px-2 py-2 rounded-md mb-2 hover:bg-gray-100 font-bold shadow-sm">
                                     <p>{miCola.elementos[0]}</p>
                                     <button className="bg-blue-700 text-white py-1 px-4 rounded-md hover:bg-blue-800 hover:scale-105 transition-transform duration-150 ease-in-out" onClick={siguiente}>Realizado</button>
                                 </ul>
@@ -105,7 +105,7 @@ export default function Panel({ setSesion }) {
                             <p className="font-bold">Siguientes en la cola:</p>
                             <ul>
                                 {miCola.elementos.slice(1).map((item, i) => (
-                                <li className="border border-gray-300 px-2 py-2 rounded-md mb-2 hover:bg-gray-100" key={i}>{item}</li>
+                                <li className="flex felx-col border border-gray-300 px-3 py-2 rounded-md mb-2 bg-white shadow-sm" key={i}>{item}</li>
                                 ))}
                             </ul>
                         </div>
@@ -113,7 +113,7 @@ export default function Panel({ setSesion }) {
                 </div>
             )}
 
-        </div>
+        </table>
         </>
     )
 }
