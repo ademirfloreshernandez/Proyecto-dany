@@ -71,7 +71,7 @@ export default function Panel({ setSesion }) {
 
                         {/* Formulario de nuevas tareas */}
                         <div> 
-                            <h3 className="font-bold">Servicios de mantenimiento a realizar</h3>
+                            <h1 className="font-bold">Servicios de mantenimiento a realizar</h1>
 
                             <form onSubmit={guardar}>
                                 <input 
@@ -88,17 +88,18 @@ export default function Panel({ setSesion }) {
                         </div>
 
                         {/* Cola de espera y pendientes */}
-                        <div>
+                        <section className="flex-col justify-center mr-auto">
                             <h3 className="font-bold">Cola de Espera</h3>
                             <p>Pendientes: {miCola.elementos.length}</p>
                             <strong>Atender ahora:</strong>
+                            
                             {miCola.elementos.length > 0 && (
-                                <ul className="flex-col border border-gray-300 px-2 py-2 rounded-md mb-2 hover:bg-gray-100 font-bold">
+                                <ul className="border border-gray-300 px-2 py-2 rounded-md mb-2 hover:bg-gray-100 font-bold">
                                     <p>{miCola.elementos[0]}</p>
                                     <button className="bg-blue-700 text-white py-1 px-4 rounded-md hover:bg-blue-800 hover:scale-105 transition-transform duration-150 ease-in-out" onClick={siguiente}>Realizado</button>
                                 </ul>
                             )}
-                        </div>
+                        </section>
 
                         <div> 
                             <p className="font-bold">Siguientes en la cola:</p>
