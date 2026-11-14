@@ -9,13 +9,22 @@ export default function Panel({ setSesion }) {
     
     const [actualizar, setActualizar] = useState(0);
     const [texto, setTexto] = useState('');
+    const [descripcion, setDesctripcion] = useState('');
     const [vistaHistorial, setVistaHistorial] = useState(false);
+
+    const[Error, setError] = useState(false);
 
     function guardar(e) {
         e.preventDefault();
-        if (texto === '') return;
+        if (texto === '' || descripcion === '') {
+            setError("Vacios");
+            return;
+        }
         
-        miCola.agregar(texto);
+        miCola.agregar({
+            nombre: texto,
+            desc: descripcion
+        });
         setTexto('');
         setActualizar(actualizar + 1);
     }
@@ -70,22 +79,32 @@ export default function Panel({ setSesion }) {
                         </div>
 
                         {/* Formulario de nuevas tareas */}
-                        <div> 
+                        <section> 
                             <h1 className="font-bold">Servicios de mantenimiento a realizar</h1>
 
-                            <form onSubmit={guardar}>
+                            <form className="" onSubmit={guardar}>
                                 <input 
-                                className="border border-gray-400 px-2 py-1 rounded-md mb-2 hover:bg-gray-100 mr-3"
+                                className="border border-gray-400 px-2 py-1 rounded-md mb-2 hover:bg-gray-100 mr-3 col-start-1 col-end-2"
                                 type="text" 
                                 value={texto} 
                                 onChange={(e) => setTexto(e.target.value)} 
                                 placeholder="Escribe el reporte"
                                 />
+
+                                <input 
+                                className="border border-gray-400 px-2 py-1 rounded-md mb-2 hover:bg-gray-100 mr-3"
+                                type="text" 
+                                value={descripcion} 
+                                onChange={(e) => setDesctripcion(e.target.value)} 
+                                placeholder="Añade una descripcion"
+                                />
                                 <button type="submit" className="bg-blue-700 text-white py-1 px-4 rounded-md hover:bg-blue-800 hover:scale-105 transition-transform duration-150 ease-in-out">
                                     +
                                 </button>
+                                {Error==="Vacios" && <p className="text-red-300 mt-1">No pueden haber campos vacíos</p>}
                             </form>
-                        </div>
+                            
+                        </section>
 
                         <section class="grid grid-cols-2 gap-4 border border-gray-300 py-2 h-[310px]">
                             {/* Cola de espera y pendientes */}
@@ -97,18 +116,21 @@ export default function Panel({ setSesion }) {
                                 {miCola.elementos.length === 0 ? (
                                     <p className="text-gray-500 italic">No hay tareas pendientes.</p>
                                 ) : (
-                                    <ul class="grid grid-cols-20 gap-1 border border-gray-300 pl-2 py-2 rounded-md mb-2 font-bold shadow-sm">
-                                        <p class="col-start-1 col-end-18">{miCola.elementos[0]}</p>
+                                    <ul class="grid grid-cols-20 gap-1 border border-gray-300 pl-2 py-2 rounded-md mb-2 shadow-sm">
+                                        <div class="col-start-1 grid-col-2 gap-2 col-end-18 flex flex-none">
+                                            <p className="font-bold max-w-[250px] overflow-x-auto pr-1">{miCola.elementos[0].nombre}</p>
+                                            <p ClassName="font-light text-blue-700">- Edificio D</p>
+                                        </div>
                                         <button className="col-start-19 col-end-20 bg-red-700 text-white rounded-md hover:bg-red-800 hover:scale-105 transition-transform duration-150 ease-in-out">x</button>
-                                        <li className="col-start-1 col-end-18 text-gray-500 font-light mb-1">Descripcion del problema jeje</li>
-                                        <button className="col-start-19 col-end-20 bg-blue-700 text-white rounded-md hover:bg-blue-800 hover:scale-105 transition-transform duration-150 ease-in-out" onClick={siguiente}>✓</button>
+                                        <li className="col-start-1 col-end-18 text-gray-500 font-light mb-1">{miCola.elementos[0].desc}</li>
+                                        <button className="col-start-19 col-end-20 bg-[#7BD260] text-white rounded-md hover:bg-[#46A12B] hover:scale-105 transition-transform duration-150 ease-in-out" onClick={siguiente}>✓</button>
                                         
                                     </ul>
                                 )}
                                 
                             </section>
 
-                            <section className="border border-gray-300 px-2 py-2 mr-2 rounded-md mb-2 font-bold shadow-sm max-h-[300px] overflow-y-auto pr-2"> 
+                            <section className="border border-gray-300 px-2 py-2 mr-2 rounded-md mb-2 shadow-sm max-h-[300px] overflow-y-auto pr-2"> 
                                 <p className="font-bold">Siguientes en la cola:</p>
                                 <ul>
                                     {miCola.elementos.length < 2 ? (
@@ -121,9 +143,12 @@ export default function Panel({ setSesion }) {
                                             {miCola.elementos.length > 1 && (
                                                 <ul>
                                                     {miCola.elementos.slice(1).map((item, i) => (
-                                                        <ul className="flex flex-col border border-gray-300 px-3 py-2 rounded-md mb-2 bg-white shadow-sm hover:bg-gray-100">
-                                                            <li key={i}>{item}</li>
-                                                            <li className="text-gray-500 font-light">Descripcion del problema jeje</li>
+                                                        <ul className="border border-gray-300 px-3 py-2 rounded-md mb-2 bg-white shadow-sm hover:bg-gray-100">
+                                                            <div className="flex gap-2">
+                                                                <li className="font-bold" key={i}>{item.nombre}</li>
+                                                                <p ClassName="font-light text-[#004aad]">Edificio D</p>
+                                                            </div>  
+                                                                <li className="text-gray-500 font-light">{item.desc}</li>
                                                         </ul>
                                                     ))}
                                                 </ul>

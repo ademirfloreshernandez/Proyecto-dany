@@ -47,8 +47,12 @@ export function Historial({ completados, onLimpiar, onVolver }) {
                 ) : (
                     <ul>
                         {completados.map((item, i) => (
-                            <li className="flex felx-col border border-gray-300 px-3 py-2 rounded-md mb-2 bg-white shadow-sm" key={i}>
-                                {item}
+                            <li className="flex flex-col gap-1 border border-gray-300 pl-2 py-2 rounded-md mb-2 shadow-sm" key={i}>
+                                <div className="flex gap-1">
+                                    <p className="font-bold overflow-x-auto pr-1">{item.nombre}</p>
+                                    <p ClassName="font-light">- Edificio D</p>
+                                </div>
+                                <p className="col-start-1 col-end-18 text-gray-500 font-light mb-1">{item.desc}</p>
                             </li>
                         ))}
                     </ul>
