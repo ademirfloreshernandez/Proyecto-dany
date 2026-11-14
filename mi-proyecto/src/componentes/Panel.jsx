@@ -108,7 +108,7 @@ export default function Panel({ setSesion }) {
                                 
                             </section>
 
-                            <section className="border border-gray-300 px-2 py-2 mr-2 rounded-md mb-2 font-bold shadow-sm"> 
+                            <section className="border border-gray-300 px-2 py-2 mr-2 rounded-md mb-2 font-bold shadow-sm max-h-[300px] overflow-y-auto pr-2"> 
                                 <p className="font-bold">Siguientes en la cola:</p>
                                 <ul>
                                     {miCola.elementos.length < 2 ? (
