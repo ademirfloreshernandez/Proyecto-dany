@@ -87,7 +87,7 @@ export default function Panel({ setSesion }) {
                             </form>
                         </div>
 
-                        <section class="grid grid-cols-2 gap-4 border border-gray-300 py-2">
+                        <section class="grid grid-cols-2 gap-4 border border-gray-300 py-2 h-[310px]">
                             {/* Cola de espera y pendientes */}
                             <section class="ml-2 flex-col mr-2 grid-span-3 ...">
                                 <h3 className="font-bold">Cola de Espera</h3>
