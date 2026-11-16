@@ -42,12 +42,24 @@ export default function Panel({ setSesion }) {
     return (
         <>
         <main className="w-full h-screen bg-[#ffffff] static top-0"> 
-            {/* 1. La barra de navegación superior que se queda fija */}
+            {/* 1. La barra de navegación superior se queda fija */}
             <section className="bg-[#004aad] text-white h-16"> 
-                <div className="flex">
-                    <div><img className="ml-4 mt-2 mb-2 bg-white size-10 rounded-full" src={logo} alt="Logo FixTurn" /></div>
-                    <div><h2 className="font-bold uppercase text-white m-4">FixTurn - Panel Principal</h2></div>
-                    <div><button className="m-4 border border-white rounded-3xl bg-none py-0.5 px-2 text-white hover:bg-white hover:text-[#004aad] hover:scale-105 transition-transform duration-150 ease-in-out" onClick={() => localStorage.setItem('sesion', false) || setSesion(false)}>Cerrar sesión</button></div>
+                <div className="flex justify-between items-center px-4 h-full">
+                    <div className="flex items-center">
+                        <img className="ml-4 mt-2 mb-2 bg-white size-10 rounded-full" src={logo} alt="Logo FixTurn" />
+                        <h2 className="font-bold uppercase text-white m-4">FixTurn - Panel Principal</h2>
+                    </div>
+                    
+                    {/* Botón de Historial en el Navbar */}
+                    <div className="flex items-center space-x-2">
+                        <button 
+                            onClick={() => setVistaHistorial(!vistaHistorial)}
+                            className="bg-blue-100 text-blue-700 font-semibold py-1 px-3 rounded-xl hover:bg-blue-200 transition-colors text-sm"
+                        >
+                            Historial de servicios
+                        </button>
+                        <button className="m-4 border border-white rounded-3xl bg-none py-0.5 px-2 text-white hover:bg-white hover:text-[#004aad] hover:scale-105 transition-transform duration-150 ease-in-out" onClick={() => localStorage.setItem('sesion', false) || setSesion(false)}>Cerrar sesión</button>
+                    </div>
                 </div>
             </section>
 
@@ -68,16 +80,6 @@ export default function Panel({ setSesion }) {
                             <p className="uppercase font-thin text-[#004aad]">{localStorage.getItem('NoUsuario')}</p>
                         </div>
                             
-                        {/* Botón para ir al Historial */}
-                        <div>
-                            <button 
-                                onClick={() => setVistaHistorial(true)}
-                                className="bg-blue-100 text-blue-700 font-semibold py-2 px-4 rounded-xl hover:bg-blue-200 transition-colors"
-                            >
-                                Historial de servicios
-                            </button>
-                        </div>
-
                         {/* Formulario de nuevas tareas */}
                         <section> 
                             <h1 className="font-bold">Servicios de mantenimiento a realizar</h1>
@@ -106,9 +108,9 @@ export default function Panel({ setSesion }) {
                             
                         </section>
 
-                        <section class="grid grid-cols-2 gap-4 border border-gray-300 py-2 h-[310px]">
+                        <section className="grid grid-cols-2 gap-4 border border-gray-300 py-2 h-[310px]">
                             {/* Cola de espera y pendientes */}
-                            <section class="ml-2 flex-col mr-2 grid-span-3 ...">
+                            <section className="ml-2 flex-col mr-2 grid-span-3 ...">
                                 <h3 className="font-bold">Cola de Espera</h3>
                                 <p>Pendientes: {miCola.elementos.length}</p>
                                 <strong>Atender ahora:</strong>
@@ -116,15 +118,14 @@ export default function Panel({ setSesion }) {
                                 {miCola.elementos.length === 0 ? (
                                     <p className="text-gray-500 italic">No hay tareas pendientes.</p>
                                 ) : (
-                                    <ul class="grid grid-cols-20 gap-1 border border-gray-300 pl-2 py-2 rounded-md mb-2 shadow-sm">
-                                        <div class="col-start-1 grid-col-2 gap-2 col-end-18 flex flex-none">
+                                    <ul className="grid grid-cols-20 gap-1 border border-gray-300 pl-2 py-2 rounded-md mb-2 shadow-sm">
+                                        <div className="col-start-1 grid-col-2 gap-2 col-end-18 flex flex-none">
                                             <p className="font-bold max-w-[250px] overflow-x-auto pr-1">{miCola.elementos[0].nombre}</p>
-                                            <p ClassName="font-light text-blue-700">- Edificio D</p>
+                                            <p className="font-light text-blue-700">Edificio D</p>
                                         </div>
                                         <button className="col-start-19 col-end-20 bg-red-700 text-white rounded-md hover:bg-red-800 hover:scale-105 transition-transform duration-150 ease-in-out">x</button>
                                         <li className="col-start-1 col-end-18 text-gray-500 font-light mb-1">{miCola.elementos[0].desc}</li>
                                         <button className="col-start-19 col-end-20 bg-[#7BD260] text-white rounded-md hover:bg-[#46A12B] hover:scale-105 transition-transform duration-150 ease-in-out" onClick={siguiente}>✓</button>
-                                        
                                     </ul>
                                 )}
                                 
@@ -143,12 +144,12 @@ export default function Panel({ setSesion }) {
                                             {miCola.elementos.length > 1 && (
                                                 <ul>
                                                     {miCola.elementos.slice(1).map((item, i) => (
-                                                        <ul className="border border-gray-300 px-3 py-2 rounded-md mb-2 bg-white shadow-sm hover:bg-gray-100">
+                                                        <ul key={i} className="border border-gray-300 px-3 py-2 rounded-md mb-2 bg-white shadow-sm hover:bg-gray-100">
                                                             <div className="flex gap-2">
-                                                                <li className="font-bold" key={i}>{item.nombre}</li>
-                                                                <p ClassName="font-light text-[#004aad]">Edificio D</p>
+                                                                <li className="font-bold">{item.nombre}</li>
+                                                                <p className="font-light text-[#004aad]">Edificio D</p>
                                                             </div>  
-                                                                <li className="text-gray-500 font-light">{item.desc}</li>
+                                                            <li className="text-gray-500 font-light">{item.desc}</li>
                                                         </ul>
                                                     ))}
                                                 </ul>
