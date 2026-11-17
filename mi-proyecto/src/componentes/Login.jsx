@@ -15,33 +15,43 @@ export function Logeo() {
   const [registro, setRegistro] = useState(false);
   const [mostrarContraseña, setMostrarContraseña] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  
+const handleSubmit = (e) => {
+  e.preventDefault();
 
-    if (NoUsuario.trim() === '' || Contraseña.trim() === '') {
-      setError("CamposVacios");
-      return;
-    } else if (NoUsuario.trim().length < 3) {
-      setError("Min3Cara");
-      return;
-    } else if (Contraseña.length < 4) {
-      setError("Min4Car");
-      return;
-    } else if (
-      NoUsuario.trim() !== 'admin' ||
-      Contraseña !== 'admin123'
-    ) {
-      setError("CredencialesIncorrectas");
-      return;
-    } else {
-      setError(false);
-      setSesion(true);
-      setRegistro(false);
+  if (NoUsuario.trim() === '' || Contraseña.trim() === '') {
+    setError("CamposVacios");
+    return;
+  } else if (NoUsuario.trim().length < 3) {
+    setError("Min3Cara");
+    return;
+  } else if (Contraseña.length < 4) {
+    setError("Min4Car");
+    return;
+  }
 
-      localStorage.setItem('sesion', 'true');
-      localStorage.setItem('NoUsuario', NoUsuario.trim());
-    }
-  };
+  // Obtener los datos guardados durante el registro
+  const usuarioGuardado = localStorage.getItem('NoUsuario');
+  const contraseñaGuardada = localStorage.getItem('Contraseña');
+
+  // Comparar los datos ingresados con los registrados
+  if (
+    NoUsuario.trim() !== usuarioGuardado ||
+    Contraseña !== contraseñaGuardada ||
+    usuarioGuardado === null ||
+    contraseñaGuardada === null
+  ) {
+    setError("CredencialesIncorrectas");
+    return;
+  }
+
+  // Iniciar sesión
+  setError(false);
+  setSesion(true);
+  setRegistro(false);
+
+  localStorage.setItem('sesion', 'true');
+};
 
   if (sesion === false && registro === false) {
     return (
