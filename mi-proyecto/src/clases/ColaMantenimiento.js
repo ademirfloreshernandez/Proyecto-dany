@@ -17,6 +17,10 @@ export class ColaMantenimiento {
     this.completados.push(atendido);
   }
 
+  quitar(){
+    this.elementos.pop()
+  }
+
   limpiar() {
     this.completados = [];
   }
