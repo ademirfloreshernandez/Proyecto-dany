@@ -189,7 +189,7 @@ export default function Panel({ setSesion }) {
                                                         <ul key={i} className="border border-gray-300 px-3 py-2 rounded-md mb-2 bg-white shadow-sm hover:bg-gray-100">
                                                             <div className="flex gap-2">
                                                                 <li className="font-bold">{item.nombre}</li>
-                                                                <p className="font-light text-[#004aad]">Edificio: {miCola.elementos[0].ubic}</p>
+                                                                <p className="font-light text-[#004aad]">Edificio: {item.ubic}</p>
                                                             </div>  
                                                             <li className="text-gray-500 font-light">{item.desc}</li>
                                                         </ul>
